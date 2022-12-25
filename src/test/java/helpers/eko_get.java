@@ -3,8 +3,6 @@ package helpers;
 import static helpers.BaseScreen.*;
 
 public class eko_get {
-
-
     /*
         Used as a basic function to get data from an element
      */

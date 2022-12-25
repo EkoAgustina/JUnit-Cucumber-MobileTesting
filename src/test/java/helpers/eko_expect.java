@@ -7,8 +7,6 @@ import java.util.NoSuchElementException;
 import static helpers.BaseScreen.*;
 
 public class eko_expect {
-
-
     /*
         Used to verify if an element is displayed
      */

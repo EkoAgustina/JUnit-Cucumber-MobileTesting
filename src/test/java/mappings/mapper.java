@@ -1,6 +1,8 @@
 package mappings;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
@@ -12,9 +14,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import static helpers.BaseScreen.driver;
+
 public class mapper {
-
-
     /*
         Used to map Element paths
      */
@@ -82,13 +84,4 @@ public class mapper {
 
         return config;
     }
-
-    public static String date(){
-        Date date = new Date();
-        SimpleDateFormat DateFor = new SimpleDateFormat("dd/MM/yyyy");
-        String stringDate= DateFor.format(date);
-        return stringDate;
-    }
-
-
 }

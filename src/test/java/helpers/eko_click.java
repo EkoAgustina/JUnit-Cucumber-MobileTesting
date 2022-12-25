@@ -5,8 +5,6 @@ import org.openqa.selenium.ElementClickInterceptedException;
 import static helpers.BaseScreen.*;
 
 public class eko_click {
-
-
     /*
         Used as a base function to provide a Click action on an Element
      */

@@ -1,5 +1,6 @@
 Feature: Alarm
 
+  @TestOne
   Scenario: User can create Alarm
     And User click "Alarm.yml:IconAlarm"
     And User wait 2 seconds
