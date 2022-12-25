@@ -21,7 +21,9 @@ pipeline {
                                         bat "appium --port ${APPIUM_PORT}"
                                     }
                                 }
+                                timeout(unit: 'SECONDS', time: 30)
                   stage("Test"){
+                  sleep 30
                              steps{
                                  git 'https://github.com/EkoAgustina/MobileTesting_Cucumber_Allure.git'
                              script{
