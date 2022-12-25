@@ -21,12 +21,14 @@ pipeline {
                                         bat "appium --port ${APPIUM_PORT}"
                                     }
                                 }
-                                timeout(unit: 'SECONDS', time: 30)
                   stage("Test"){
-                  sleep 30
+                             options {
+                                             timeout(time: 30, unit: "SECONDS")
+                                         }
                              steps{
                                  git 'https://github.com/EkoAgustina/MobileTesting_Cucumber_Allure.git'
                              script{
+                                 sleep(time: 10, unit: "SECONDS")
                                  bat """
                                     mvn clean test
                                     kill \$(lsof -t -i :${APPIUM_PORT})
