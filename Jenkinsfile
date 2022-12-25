@@ -1,56 +1,42 @@
-def project = "Parallel Mobile Testing"
+def project = "Mobile Testing"
 
 pipeline {
     agent any
     environment {
             APPIUM_PORT= 4723
         }
-
     stages{
 
         stage('Build') {
             steps {
-                 echo 'Hi, Start testing'
+                 echo 'Hi, I am going to do testing!'
                    }
             }
 
-        stage('Start Appium Server and Execute Test'){
+        stage('Preparing for Testing'){
             parallel{
                  stage('Appium Server') {
                                     steps {
+                                        echo 'Start Appium Server!'
                                         bat "appium --port ${APPIUM_PORT}"
                                     }
                                 }
-                  stage("Test"){
-                             options {
-                                             timeout(time: 30, unit: "SECONDS")
-                                         }
+                  stage("Testing"){
                              steps{
                                  git 'https://github.com/EkoAgustina/MobileTesting_Cucumber_Allure.git'
                              script{
-                                 sleep(time: 10, unit: "SECONDS")
-                                 bat """
-                                    mvn clean test
-                                    kill \$(lsof -t -i :${APPIUM_PORT})
-                                 """
+                                 sleep(time: 50, unit: "SECONDS")
+                                 bat "mvn clean test"
                                  }
+                             script {
+                                  echo 'Kill Appium Server!'
+                                  bat "tskill node"
+                        }
                              }
                    }
             }
         }
-
-
-          stage ('Generate Cucumber Report') {
-
-                     steps {
-                         cucumber buildStatus: "UNSTABLE",
-                             fileIncludePattern: "**/cucumber.json",
-                             jsonReportDirectory: 'target'
-
-                     }
-
-                 }
-          stage('Generate Allure Report'){
+          stage('Publish Report'){
                       steps {
                            allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
                      }
