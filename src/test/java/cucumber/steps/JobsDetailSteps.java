@@ -14,6 +14,10 @@ import java.util.concurrent.TimeUnit;
 import static helpers.BaseScreen.*;
 
 public class JobsDetailSteps {
+    String path_element;
+    String locator;
+    String path_data;
+    String expect_data;
 
     /*
         - Used to provide a Click action on an Element
@@ -21,14 +25,14 @@ public class JobsDetailSteps {
      */
     @And("User click {string}")
     public void userClick(String element) throws FileNotFoundException {
-        String path = mapper.key_element(element);
-        String locator = mapper.LoadYaml(path.split("\\:")[0],path.split("\\:")[1]);
+        path_element = mapper.key_element(element);
+        locator = mapper.LoadYaml(path_element.split("\\:")[0], path_element.split("\\:")[1]);
 
         try {
             eko_click.click(locator);
         }
         catch(Exception e) {
-            System.out.println(ANSI_RED+"Your elements: '"+locator+"' , step is failed!"+ANSI_RESET);
+            System.out.println(ANSI_RED+"Your elements: '"+ locator +"' , step is failed!"+ANSI_RESET);
             throw e;
         }
 
@@ -53,8 +57,8 @@ public class JobsDetailSteps {
      */
     @Then("Verify element {string} will be displayed")
     public void verifyElementWillBeDisplayed(String element){
-        String path = mapper.key_element(element);
-        String locator = mapper.LoadYaml(path.split("\\:")[0],path.split("\\:")[1]);
+        path_element = mapper.key_element(element);
+        locator = mapper.LoadYaml(path_element.split("\\:")[0],path_element.split("\\:")[1]);
 
         try {
             eko_expect.elment_displayed(locator);
@@ -72,11 +76,11 @@ public class JobsDetailSteps {
      */
     @Then("Verify value {string} is {string} with data {string}")
     public void VerifyValueIsWithData(String element, String condition, String test_data) {
-        String path_element = mapper.key_element(element);
-        String locator = mapper.LoadYaml(path_element.split("\\:")[0],path_element.split("\\:")[1]);
+        path_element = mapper.key_element(element);
+        locator = mapper.LoadYaml(path_element.split("\\:")[0],path_element.split("\\:")[1]);
 
-        String path_data = mapper.key_data(test_data);
-        String expect_data = mapper.LoadYaml(path_data.split("\\:")[0],path_data.split("\\:")[1]);
+        path_data = mapper.key_data(test_data);
+        expect_data = mapper.LoadYaml(path_data.split("\\:")[0],path_data.split("\\:")[1]);
 
 
         switch (condition){

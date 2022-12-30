@@ -19,6 +19,7 @@ public class BasicClass {
         cap.setCapability("deviceName","127.0.0.1:21503");
         cap.setCapability("autoGrantPermissions","true");
         cap.setCapability("noReset","false");
+        cap.setCapability("printPageSourceOnFindFailure","true");
         /*
           Use this if you want to run your app using appPackage and appActivity
          */

@@ -2,7 +2,7 @@
 
 ECHO ============================STARTING APPIUM SERVER===================================
 start /b appium --port 4723
-timeout /t 37 /nobreak
+timeout /t 6 /nobreak
 
 ECHO ============================START TESTING============================================
 call mvn clean test
