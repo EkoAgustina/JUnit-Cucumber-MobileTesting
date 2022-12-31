@@ -27,6 +27,7 @@ public class eko_expect {
         Used to compare data obtained from elements with test data
      */
     public static String equal_data (String locator, String test_data){
+        String equal;
         String element = String.valueOf(eko_get.get_text(locator));
         try {
             if (test_data==null){
@@ -36,14 +37,14 @@ public class eko_expect {
                 throw new RuntimeException(ANSI_RED+"Empty test data!"+ANSI_RESET);
             }
             else {
-                Assert.assertEquals(element,test_data);
+                equal = String.valueOf(element.equals(test_data));
                 System.out.println(ANSI_YELLOW+"Your value '"+element+"' is equal with data '"+test_data+"'"+ANSI_RESET);
             }
-        } catch (AssertionError e){
+        } catch (Exception e){
             System.out.println(ANSI_RED+"Your value '"+element+"' not equal with data '"+test_data+"' not as expected!"+ANSI_RESET);
             throw e;
         }
-        return null;
+        return equal;
     }
 
 
