@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
         features = "src/test/java/cucumber/features",
         glue = {"cucumber.steps","hooks"},
         plugin = {"pretty","io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"},
-        tags = "",
+        tags = "@TestPass",
         monochrome = true,
         publish = true
 )

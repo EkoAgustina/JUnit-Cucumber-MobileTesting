@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.NoSuchElementException;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 
 import static mappings.mapper.locatorParser;
@@ -41,7 +42,7 @@ public class BaseScreen {
         
         try {
             MobileElement mobile_element = driver.findElement(locatorParser(prop.getProperty("locator", locator)));
-            WebDriverWait wait = new WebDriverWait(driver,5);
+            WebDriverWait wait = new WebDriverWait(driver,10);
             appium_element = (MobileElement) wait.until(ExpectedConditions.visibilityOf(mobile_element));
         } catch (NoSuchElementException e){
             System.out.println(ANSI_RED+"Elements  doesn't exist!"+ANSI_RESET);

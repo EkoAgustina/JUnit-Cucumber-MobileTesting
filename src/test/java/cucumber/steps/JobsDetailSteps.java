@@ -20,6 +20,8 @@ import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static helpers.BaseScreen.*;
 import static helpers.eko_get.*;
@@ -117,7 +119,7 @@ public class JobsDetailSteps {
                     case "equal":
                         if(your_equal.equals("true")){
                             Allure.addAttachment("Verify","Your value '"+ get_text(locator)+"' is equal with data '"+expect_data+"'");
-                            System.out.println(ANSI_YELLOW+"Your value '"+get_text(locator)+"' is equal with data '"+expect_data+"'");
+                            System.out.println(ANSI_YELLOW+"Your value '"+get_text(locator)+"' is equal with data '"+expect_data+"'"+ANSI_RESET);
                         }
                         else {
                             throw new RuntimeException(ANSI_RED+"Your value '"+get_text(locator)+"' not equal with data '"+expect_data+"' not as expected"+ANSI_RESET);
