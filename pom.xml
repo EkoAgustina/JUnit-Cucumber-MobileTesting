@@ -86,6 +86,14 @@
             <version>1.5.0</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/net.masterthought/cucumber-reporting -->
+        <dependency>
+            <groupId>net.masterthought</groupId>
+            <artifactId>cucumber-reporting</artifactId>
+            <version>5.7.4</version>
+        </dependency>
+
+
 
     </dependencies>
     <build>
@@ -100,6 +108,17 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+
+
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.10.0</version>
+                <configuration>
+                    <reportVersion>2.10.0</reportVersion>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 </project>

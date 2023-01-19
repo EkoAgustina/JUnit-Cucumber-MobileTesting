@@ -1,26 +1,13 @@
 package hooks;
 
 
-import Capabilities.BasicClass;
-import helpers.BaseScreen;
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
-import io.cucumber.java.*;
-import io.cucumber.messages.types.TestStep;
-import io.cucumber.plugin.event.*;
-import io.cucumber.plugin.event.Status;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
 
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.lang.reflect.Field;
+import io.appium.java_client.AppiumDriver;
+
+import io.cucumber.java.*;
+
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.stream.Collectors;
+
 
 
 import static Capabilities.BasicClass.initDevice;
@@ -30,6 +17,9 @@ public class driverHooks {
     private static String appiumBaseUrl = "http://127.0.0.1:";
     private static String appiumPort    = "4723";
     private static URL appiumServerURl;
+
+
+
 
     /*
         Used as a base function before a scenario is run
@@ -56,9 +46,10 @@ public class driverHooks {
                 scenario.attach(takeScreenshotAllure(), "image/png", scenario.getName()+scenario.getStatus());
 
             } else {
-                scenario.log(scenario.getName()+" "+scenario.getStatus());
-
+                scenario.log(scenario.getName() +" "+scenario.getStatus());
             }
         }
     }
+
+
 }

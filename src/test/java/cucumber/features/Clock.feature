@@ -12,7 +12,7 @@ Feature: Alarm
     And User click "Alarm.yml:OKButton"
     And User wait 2 seconds
     Then Verify value "Alarm.yml:MyAlarm" is "equal" with data "test_data.yml:dataMyAlarm"
-    Then User take screenshot with file name "One"
+    Then User take screenshot with file name "Myscreenshoot"
 
   @TestFail
   Scenario: User fail run test

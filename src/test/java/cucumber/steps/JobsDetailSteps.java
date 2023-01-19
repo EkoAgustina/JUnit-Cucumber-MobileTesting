@@ -1,18 +1,11 @@
 package cucumber.steps;
 
 
-import cucumber.tests.TestRunner;
-import helpers.BaseScreen;
 import helpers.eko_click;
 import helpers.eko_expect;
-import helpers.eko_get;
-import io.cucumber.core.runner.Runner;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.plugin.event.TestStep;
-import io.cucumber.testng.TestNGCucumberRunner;
 import io.qameta.allure.Allure;
 import mappings.mapper;
 
@@ -20,8 +13,6 @@ import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static helpers.BaseScreen.*;
 import static helpers.eko_get.*;
