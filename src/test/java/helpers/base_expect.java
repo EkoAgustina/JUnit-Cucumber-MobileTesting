@@ -1,17 +1,15 @@
 package helpers;
 
-import org.testng.Assert;
-
 import java.util.NoSuchElementException;
 
 import static helpers.BaseScreen.*;
 
-public class eko_expect {
+public class base_expect {
     /*
         Used to verify if an element is displayed
      */
     public static String elment_displayed(String locator){
-        Boolean displayed = eko_find(locator).isDisplayed();
+        Boolean displayed = base_find(locator).isDisplayed();
         try {
             if (displayed == true){
                 return String.valueOf(displayed);
@@ -28,7 +26,7 @@ public class eko_expect {
      */
     public static String equal_data (String locator, String test_data){
         String equal;
-        String element = String.valueOf(eko_get.get_text(locator));
+        String element = String.valueOf(base_get.get_text(locator));
         try {
             if (test_data==null){
                 throw new RuntimeException(ANSI_RED+"Test data not found!"+ANSI_RESET);

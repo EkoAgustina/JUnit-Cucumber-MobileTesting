@@ -2,14 +2,14 @@ package helpers;
 
 import static helpers.BaseScreen.*;
 
-public class eko_get {
+public class base_get {
     /*
         Used as a basic function to get data from an element
      */
     public static String get_text(String locator){
         String text;
         try {
-            text = eko_find(locator).getText();
+            text = base_find(locator).getText();
             if (text==null){
                 throw new RuntimeException(ANSI_RED+"Text not found!"+ANSI_RESET);
             }

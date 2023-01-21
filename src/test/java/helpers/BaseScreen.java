@@ -34,7 +34,7 @@ public class BaseScreen {
     /*
         Used as a basic function to search for Elements
      */
-    public static MobileElement eko_find(String locator){
+    public static MobileElement base_find(String locator){
         MobileElement appium_element = null;
         
         try {

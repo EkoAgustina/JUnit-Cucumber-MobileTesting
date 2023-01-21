@@ -1,8 +1,8 @@
 package cucumber.steps;
 
 
-import helpers.eko_click;
-import helpers.eko_expect;
+import helpers.base_click;
+import helpers.base_expect;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -15,8 +15,8 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import static helpers.BaseScreen.*;
-import static helpers.eko_get.*;
-import static helpers.eko_expect.equal_data;
+import static helpers.base_get.*;
+import static helpers.base_expect.equal_data;
 
 public class JobsDetailSteps {
     String path_element;
@@ -41,7 +41,7 @@ public class JobsDetailSteps {
         }
         else {
             try {
-                eko_click.click(locator);
+                base_click.click(locator);
             }
             catch(Exception e) {
                 throw new RuntimeException(ANSI_RED+"Step is failed! "+"Your element: '"+ locator+ANSI_RESET+ " and your original error: '"+e.getMessage()+"'");
@@ -75,7 +75,7 @@ public class JobsDetailSteps {
         }
         else {
             try {
-                eko_expect.elment_displayed(locator);
+                base_expect.elment_displayed(locator);
                 System.out.println(ANSI_YELLOW+"Element '"+locator+"' is displayed"+ANSI_RESET);
                 Allure.addAttachment("Verify","Your element '"+locator+"' is displayed");
             }catch (Exception e){
