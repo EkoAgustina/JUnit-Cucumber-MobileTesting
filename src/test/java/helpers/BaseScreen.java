@@ -3,6 +3,7 @@ package helpers;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,9 +16,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Date;
 import java.util.NoSuchElementException;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 
 import static mappings.mapper.locatorParser;
@@ -29,18 +32,24 @@ public class BaseScreen {
 
     static Properties prop=new Properties();
     public static AppiumDriver<MobileElement> driver;
-    protected static WebDriverWait wait;
-
+    public static void base_sleep(int duration) throws InterruptedException {
+        TimeUnit.SECONDS.sleep(duration);
+    }
+    public static WebDriverWait wait (int period){
+        WebDriverWait wait = new WebDriverWait(driver,period);
+        return wait;
+    }
     /*
         Used as a basic function to search for Elements
      */
     public static MobileElement base_find(String locator){
         MobileElement appium_element = null;
-        
+
         try {
             MobileElement mobile_element = driver.findElement(locatorParser(prop.getProperty("locator", locator)));
-            WebDriverWait wait = new WebDriverWait(driver,10);
-            appium_element = (MobileElement) wait.until(ExpectedConditions.visibilityOf(mobile_element));
+            appium_element = (MobileElement) wait(10).until(ExpectedConditions.visibilityOf(mobile_element));
+//            WebDriverWait wait = new WebDriverWait(driver,10);
+//            appium_element = (MobileElement) wait.until(ExpectedConditions.visibilityOf(mobile_element));
         } catch (NoSuchElementException e){
             System.out.println(ANSI_RED+"Elements  doesn't exist!"+ANSI_RESET);
             throw e;

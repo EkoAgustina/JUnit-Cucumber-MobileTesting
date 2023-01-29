@@ -10,11 +10,8 @@ public class base_get {
         String text;
         try {
             text = base_find(locator).getText();
-            if (text==null){
+            if (text==null || text.isEmpty() == true){
                 throw new RuntimeException(ANSI_RED+"Text not found!"+ANSI_RESET);
-            }
-            else if (text.isEmpty()){
-                throw new RuntimeException(ANSI_RED+"Empty text!"+ANSI_RESET);
             }
             else {
                 return text;

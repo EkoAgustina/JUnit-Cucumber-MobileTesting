@@ -11,10 +11,12 @@ import java.io.File;
 import java.net.URL;
 
 import static mappings.mapper.file_path;
+import static mappings.mapper.key_apps;
 
 public class BasicClass {
-    private static String APP        = file_path("/apk/app-clock.apk").getAbsolutePath();
-    private static String deviceName = "127.0.0.1:21503";
+//    "/apk/app-clock.apk"
+    private static String apps           = System.getProperty("apps","");
+    private static String deviceName    = System.getProperty("deviceName","");
     public static DesiredCapabilities initDevice(){
         /*
           Desired Capabilities is used to send JSON Data to Appium Server
@@ -26,7 +28,9 @@ public class BasicClass {
         cap.setCapability("autoGrantPermissions","true");
         cap.setCapability("noReset","false");
         cap.setCapability("printPageSourceOnFindFailure","true");
-        cap.setCapability("app", APP);
+        cap.setCapability("app", key_apps(apps));
+        cap.setCapability("appWaitDuration","30000");
+        cap.setCapability("appWaitActivity","SplashActivity, SplashActivity,OtherActivity, *, *.SplashActivity");
 
         return cap;
     }

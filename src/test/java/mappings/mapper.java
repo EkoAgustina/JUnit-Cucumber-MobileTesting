@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -17,6 +19,19 @@ import java.util.Map;
 import static helpers.BaseScreen.driver;
 
 public class mapper {
+    /*
+       Used to map Apps paths
+    */
+    public static String key_apps(String apps){
+        String use_key = null;
+        if (Files.exists(Paths.get(file_path("/apk/"+apps).getAbsolutePath()))){
+            use_key = file_path("/apk/"+apps).getAbsolutePath();
+        }
+        else {
+            throw new RuntimeException("Apps not found!");
+        }
+        return use_key;
+    }
     /*
         Used to map Element paths
      */
@@ -66,8 +81,8 @@ public class mapper {
 
         try {
             InputStream stream = new FileInputStream(selector);
-
             conf = (Map) yaml.load(stream);
+
             config = (String) conf.get(element);
 
             if (conf == null || conf.isEmpty() == true) {

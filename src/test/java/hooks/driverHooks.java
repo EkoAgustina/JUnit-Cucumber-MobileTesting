@@ -30,16 +30,17 @@ public class driverHooks {
         try {
             driver = new AppiumDriver(appiumServerURl,initDevice());
             System.out.println("Apps started...");
+            base_sleep(5);
         } catch (Exception e){
-            throw new RuntimeException(ANSI_RED+"Cannot started apps!"+" and original error '"+e.getMessage()+"'"+ANSI_RESET);
+
+            throw new RuntimeException(ANSI_RED+"Cannot started apps!"+" and original error"+ANSI_RESET+"'"+e.getMessage()+"'");
         }
     }
     /*
         Used as a base function after the scenario is executed
      */
     @After
-    public void handlingAfter(Scenario scenario) throws InterruptedException {
-        Thread.sleep(1000);
+    public void handlingAfter(Scenario scenario){
         if (driver != null) {
             if (scenario.isFailed()) {
                 scenario.log("Scenario "+scenario.getName()+" "+scenario.getStatus());

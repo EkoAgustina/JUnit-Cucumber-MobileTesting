@@ -1,20 +1,22 @@
 package cucumber.tests;
 
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+import org.junit.runner.RunWith;
 
-import io.cucumber.testng.AbstractTestNGCucumberTests;
-import io.cucumber.testng.CucumberOptions;
-import org.testng.annotations.Test;
+import static io.cucumber.junit.CucumberOptions.SnippetType.CAMELCASE;
 
-@Test()
+@RunWith(Cucumber.class)
 @CucumberOptions(
-
-        features = "src/test/java/cucumber/features",
-        glue = {"cucumber.steps","hooks"},
+        features ="src/test/java/cucumber/features",
+        glue={"cucumber.steps","hooks"},
+        tags = "",
         plugin = {"json:target/cucumber.json","pretty","html:target/cucumber-reports","io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"},
-        tags = "@TestPass",
         monochrome = true,
-        publish = true
+        publish = true,
+        snippets = CAMELCASE
+
 )
-public class TestRunner extends AbstractTestNGCucumberTests {
+public class TestRunner{
 
 }
