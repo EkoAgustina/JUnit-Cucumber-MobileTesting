@@ -36,14 +36,14 @@ public class mapper {
         Used to map Element paths
      */
     public static String key_element(String element){
-        String use_selector = "src/test/java/selector/"+element;
+        String use_selector = "src/test/java/selector/"+element.split(":")[0]+".yml"+":"+element.split(":")[1];
         return use_selector;
     }
     /*
         Used to map the path of Test Data
      */
     public static String key_data(String data){
-        String use_data = "src/test/java/resources/"+data;
+        String use_data = "src/test/java/resources/"+data.split(":")[0]+".yml"+":"+data.split(":")[1];
         return use_data;
     }
     /*

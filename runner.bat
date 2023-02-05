@@ -1,24 +1,24 @@
 @ECHO OFF
 
 
-::Enter Appium port, example => appiumPort=4723
+::Enter Appium port
 set appiumPort=4723
 
-::Enter Device Name, example => deviceName=127.0.0.1:21503
+::Enter Device Name
 set deviceName=127.0.0.1:21503
 
-::Enter Enter Apk, example => apps=app-clock.apk
+::Enter Apk
 set apps=wdio.apk
 
 ::Enter tags, example => tags=@smoke
-set tags=@validSignup
+set tags=@smokeTest
 
 ECHO:
 ECHO ============================STARTING APPIUM SERVER===================================
 if defined appiumPort (
     tskill node
     start /b appium --port %appiumPort%
-)else (
+) else (
     echo APPIUM PORT IS REQUIRED!
     exit 9
 )

@@ -13,8 +13,7 @@ public class base_click {
             base_sleep(2);
             base_find(locator).click();
         } catch (Exception e){
-            System.out.println(ANSI_RED+"Elements cannot be clicked!"+ANSI_RESET);
-            throw e;
+            throw new RuntimeException(ANSI_RED+"Elements cannot be clicked! and your orignal error : "+ANSI_RESET+e.getMessage());
         }
     }
 }

@@ -30,7 +30,7 @@ public class driverHooks {
         try {
             driver = new AppiumDriver(appiumServerURl,initDevice());
             System.out.println("Apps started...");
-            base_sleep(5);
+            base_sleep(3);
         } catch (Exception e){
 
             throw new RuntimeException(ANSI_RED+"Cannot started apps!"+" and original error"+ANSI_RESET+"'"+e.getMessage()+"'");

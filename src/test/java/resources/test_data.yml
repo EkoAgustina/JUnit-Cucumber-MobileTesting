@@ -1,5 +1,5 @@
 #Used to put Test Data
 
-dataMyAlarm: 5:30 AM
+dataMyAlarm: "5:30 AM"
 
-dataMyAlar: 5:30 A
+dataMyAlar: "5:30 A"

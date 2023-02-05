@@ -48,11 +48,8 @@ public class BaseScreen {
         try {
             MobileElement mobile_element = driver.findElement(locatorParser(prop.getProperty("locator", locator)));
             appium_element = (MobileElement) wait(10).until(ExpectedConditions.visibilityOf(mobile_element));
-//            WebDriverWait wait = new WebDriverWait(driver,10);
-//            appium_element = (MobileElement) wait.until(ExpectedConditions.visibilityOf(mobile_element));
         } catch (NoSuchElementException e){
-            System.out.println(ANSI_RED+"Elements  doesn't exist!"+ANSI_RESET);
-            throw e;
+            throw new RuntimeException(ANSI_RED+"Elements  doesn't exist! and original error :"+ANSI_RESET+e.getMessage());
         }
         return appium_element;
     }

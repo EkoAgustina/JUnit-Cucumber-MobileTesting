@@ -15,6 +15,7 @@ import java.io.IOException;
 
 
 import static helpers.BaseScreen.*;
+import static helpers.base_expect.elment_displayed;
 import static helpers.base_fill.fill;
 import static helpers.base_get.*;
 import static helpers.base_expect.equal_data;
@@ -32,7 +33,7 @@ public class JobsDetailSteps {
         - Used to provide a Click action on an Element
         - String element = parameter for the element used
      */
-    @And("User click {string}")
+    @And("^User click \"(.*)\"$")
     public void userClick(String element) throws FileNotFoundException {
         path_element = mapper.key_element(element);
         locator = mapper.LoadYaml(path_element.split("\\:")[0], path_element.split("\\:")[1]);
@@ -53,7 +54,7 @@ public class JobsDetailSteps {
         - Used to provide waiting time
         - int time => timeout duration parameter
      */
-    @And("User wait {int} seconds")
+    @And("^User wait (.*) seconds$")
     public void userWaitSeconds(int time) throws InterruptedException {
 
         try {
@@ -66,7 +67,7 @@ public class JobsDetailSteps {
         - Used to verify the element is displayed
         - String element => parameter for the element used
      */
-    @Then("Verify element {string} will be displayed")
+    @Then("^Verify element \"(.*)\" will be displayed$")
     public void verifyElementWillBeDisplayed(String element){
         path_element = mapper.key_element(element);
         locator = mapper.LoadYaml(path_element.split("\\:")[0],path_element.split("\\:")[1]);
@@ -76,7 +77,7 @@ public class JobsDetailSteps {
         }
         else {
             try {
-                base_expect.elment_displayed(locator);
+                elment_displayed(locator);
                 System.out.println(ANSI_YELLOW+"Element '"+locator+"' is displayed"+ANSI_RESET);
                 Allure.addAttachment("Verify","Your element '"+locator+"' is displayed");
             }catch (Exception e){
@@ -90,23 +91,24 @@ public class JobsDetailSteps {
         - String condition  => parameters to provide conditions whether Equal or Not Equal
         - String test_data  => parameters for the test data used
      */
-    @Then("Verify value {string} is {string} with data {string}")
-    public void VerifyValueIsWithData(String element, String condition, String test_data) {
+    @Then("^Verify value \"(.*)\" is (equal|not equal) with (data|regex) \"(.*)\"$")
+    public void VerifyValueIsWithData(String element, String condition,String match, String test_data ) {
         path_element = mapper.key_element(element);
         locator = mapper.LoadYaml(path_element.split("\\:")[0],path_element.split("\\:")[1]);
 
-        if(locator == null || locator.isEmpty() == true){
+        if (locator == null || locator.isEmpty() == true){
             throw new RuntimeException(ANSI_RED+"Locator doesn't exist!"+ANSI_RESET);
         }
-        else{
+        else {
             path_data = mapper.key_data(test_data);
             expect_data = mapper.LoadYaml(path_data.split("\\:")[0],path_data.split("\\:")[1]);
 
             if (expect_data == null || expect_data.isEmpty()){
                 throw new RuntimeException(ANSI_RED+"Test data doesn't exist!"+ANSI_RESET);
             }
-            else{
-                String your_equal = equal_data(locator,expect_data);
+            else {
+                String your_equal = equal_data(locator,expect_data,match);
+
                 switch (condition){
                     case "equal":
                         if(your_equal.equals("true")){
@@ -117,8 +119,9 @@ public class JobsDetailSteps {
                             throw new RuntimeException(ANSI_RED+"Your value '"+get_text(locator)+"' not equal with data '"+expect_data+"' not as expected"+ANSI_RESET);
                         }
                         break;
+
                     case "not equal":
-                        if(your_equal.equals("false")){
+                        if (your_equal.equals("false")){
                             Allure.addAttachment("Verify","Your value '"+get_text(locator)+"' is not equal with data '"+expect_data+"' as expected");
                             System.out.println(ANSI_YELLOW+"Your value '"+get_text(locator)+"' is not equal with data '"+expect_data+"' as expected");
                         }
@@ -126,6 +129,7 @@ public class JobsDetailSteps {
                             throw new RuntimeException(ANSI_RED+"Your value '"+get_text(locator)+"' is equal with data '"+expect_data+"' not as expected"+ANSI_RESET);
                         }
                         break;
+
                     default:
                         throw new RuntimeException(ANSI_RED+"Your element: '"+locator+"' condition '"+condition+"' and test data '"+expect_data+"' step is failed!"+ANSI_RESET);
                 }
@@ -136,7 +140,7 @@ public class JobsDetailSteps {
         - Used to take screenshots then save in your project folder and screenshots will be displayed in the Allure Report
         - String screenshotName => Parameter for the filename of the screenshot
      */
-    @Then("User take screenshot with file name {string}")
+    @Then("^User take screenshot with file name \"(.*)\"$")
     public void userTakesScreenshotWithFileName(String screenshotName) throws IOException {
         try {
             path_screenshot = String.valueOf(captureScreen(screenshotName));
@@ -148,18 +152,19 @@ public class JobsDetailSteps {
 
     }
 
-    @And("User fills in {string} with {string}")
+    @And("^User fills in \"(.*)\" with \"(.*)\"$")
     public void userFillsInWith(String element, String test_data) {
         path_element = mapper.key_element(element);
         locator = mapper.LoadYaml(path_element.split("\\:")[0],path_element.split("\\:")[1]);
 
-        if(locator == null || locator.isEmpty() == true){
+        if (locator == null || locator.isEmpty() == true){
             throw new RuntimeException(ANSI_RED+"Locator doesn't exist!"+ANSI_RESET);
         }
         else {
             path_data = mapper.key_data(test_data);
             fill_data = mapper.LoadYaml(path_data.split("\\:")[0],path_data.split("\\:")[1]);
-            if(fill_data == null || fill_data.isEmpty() == true){
+
+            if (fill_data == null || fill_data.isEmpty() == true){
                 throw new RuntimeException(ANSI_RED+"Test data doesn't exist!"+ANSI_RESET);
             }
             else {

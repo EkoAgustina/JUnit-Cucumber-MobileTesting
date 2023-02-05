@@ -17,8 +17,7 @@ public class base_get {
                 return text;
             }
         } catch (Exception e){
-            System.out.println(ANSI_RED+"Incompatible elements!"+ANSI_RESET);
-            throw e;
+            throw new RuntimeException(ANSI_RED+"Incompatible elements! and your original error : "+ANSI_RESET+e.getMessage());
         }
     }
 }
