@@ -10,7 +10,7 @@ set deviceName=127.0.0.1:21503
 ::Enter Apk
 set apps=wdio.apk
 
-::Enter tags, example => tags=@smoke
+::Enter tags
 set tags=@smokeTest
 
 ECHO:
@@ -22,7 +22,7 @@ if defined appiumPort (
     echo APPIUM PORT IS REQUIRED!
     exit 9
 )
-timeout /t 6 /nobreak
+timeout /t 7 /nobreak
 
 ECHO:
 ECHO ============================START TESTING============================================
