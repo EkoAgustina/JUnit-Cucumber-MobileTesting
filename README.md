@@ -1,4 +1,4 @@
-<h1 align="center">Appium - WebdriverIO - Cucumber</h1>
+<h1 align="center">Mobile Testing</h1>
 <p align="center">
      <a>
         <img alt="Appium" src="https://i.imgur.com/ekYuUDC.png" width="40">
