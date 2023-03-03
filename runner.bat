@@ -1,6 +1,6 @@
 @ECHO OFF
 
-
+::================================Configuration============================================
 ::Enter Appium port
 set appiumPort=4723
 
@@ -12,9 +12,8 @@ set apps=wdio.apk
 
 ::Enter tags
 set tags=@smokeTest
+::========================================================================================
 
-ECHO:
-ECHO ============================STARTING APPIUM SERVER===================================
 if defined appiumPort (
     tskill node
     start /b appium --port %appiumPort%
@@ -22,10 +21,9 @@ if defined appiumPort (
     echo APPIUM PORT IS REQUIRED!
     exit 9
 )
-timeout /t 7 /nobreak
+timeout /t 7 /nobreak > NUL
 
-ECHO:
-ECHO ============================START TESTING============================================
+
 if defined deviceName (
     if defined apps (
         if defined tags (

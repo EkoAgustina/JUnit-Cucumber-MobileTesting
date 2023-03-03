@@ -18,9 +18,6 @@ public class driverHooks {
     private static String appiumPort    = "4723";
     private static URL appiumServerURl;
 
-
-
-
     /*
         Used as a base function before a scenario is run
      */

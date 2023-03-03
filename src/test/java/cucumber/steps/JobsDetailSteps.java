@@ -54,7 +54,7 @@ public class JobsDetailSteps {
         - Used to provide waiting time
         - int time => timeout duration parameter
      */
-    @And("^User wait (.*) seconds$")
+    @And("^Wait (.*) seconds$")
     public void userWaitSeconds(int time) throws InterruptedException {
 
         try {
@@ -67,7 +67,7 @@ public class JobsDetailSteps {
         - Used to verify the element is displayed
         - String element => parameter for the element used
      */
-    @Then("^Verify element \"(.*)\" will be displayed$")
+    @Then("^Element \"(.*)\" will be displayed$")
     public void verifyElementWillBeDisplayed(String element){
         path_element = mapper.key_element(element);
         locator = mapper.LoadYaml(path_element.split("\\:")[0],path_element.split("\\:")[1]);
@@ -91,7 +91,7 @@ public class JobsDetailSteps {
         - String condition  => parameters to provide conditions whether Equal or Not Equal
         - String test_data  => parameters for the test data used
      */
-    @Then("^Verify value \"(.*)\" is (equal|not equal) with (data|regex) \"(.*)\"$")
+    @Then("^Element \"(.*)\" is (equal|not equal) with (data|regex) \"(.*)\"$")
     public void VerifyValueIsWithData(String element, String condition,String match, String test_data ) {
         path_element = mapper.key_element(element);
         locator = mapper.LoadYaml(path_element.split("\\:")[0],path_element.split("\\:")[1]);
@@ -152,7 +152,7 @@ public class JobsDetailSteps {
 
     }
 
-    @And("^User fills in \"(.*)\" with \"(.*)\"$")
+    @And("^Fill in \"(.*)\" with \"(.*)\"$")
     public void userFillsInWith(String element, String test_data) {
         path_element = mapper.key_element(element);
         locator = mapper.LoadYaml(path_element.split("\\:")[0],path_element.split("\\:")[1]);
