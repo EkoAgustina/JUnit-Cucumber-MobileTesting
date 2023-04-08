@@ -14,8 +14,6 @@ public class base_expect {
      */
     public static String element_displayed(String locator, String condition){
         Boolean elDisplayed = base_find(locator).isDisplayed();
-        System.out.println("ini hasill: "+elDisplayed);
-        System.out.println("iniiiiL "+condition);
         switch (condition){
             case "displayed":
                 if (elDisplayed.equals(true)){
@@ -50,7 +48,6 @@ public class base_expect {
         String element = base_get.get_text(locator);
         switch (match) {
             case "data":
-                System.out.println("ini test dataa: " + test_data);
                 if (test_data == null || test_data.isEmpty()) {
                     throw new RuntimeException(ANSI_RED + "Test data not found!" + ANSI_RESET);
                 } else {
