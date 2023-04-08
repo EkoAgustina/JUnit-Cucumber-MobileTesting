@@ -7,8 +7,7 @@ public class base_fill {
         try {
             base_find(locator).sendKeys(test_data);
         } catch (Exception e){
-            System.out.println(ANSI_RED+"Failed to fill!"+ANSI_RESET);
-            throw e;
+            throw new RuntimeException("Failed to fill "+locator+" '"+e.getMessage()+"'");
         }
     }
 }

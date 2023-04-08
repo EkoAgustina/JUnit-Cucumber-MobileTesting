@@ -1,3 +1,5 @@
+
+loginSignupTitle: By.xpath("//*[@content-desc="button-login-container"]/preceding-sibling::android.view.ViewGroup/android.widget.TextView")
 signupContain: By.xpath("//android.view.ViewGroup[@content-desc="button-sign-up-container"]")
 emailField: By.xpath("//android.widget.EditText[@content-desc="input-email"]")
 passwordField: By.xpath("//android.widget.EditText[@content-desc="input-password"]")

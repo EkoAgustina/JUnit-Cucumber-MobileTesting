@@ -49,5 +49,10 @@ public class driverHooks {
         }
     }
 
+    @BeforeStep
+    public  void handlingBeforeStep() throws InterruptedException {
+        base_sleep(3);
+    }
+
 
 }

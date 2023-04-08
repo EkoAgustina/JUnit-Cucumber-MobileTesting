@@ -1,8 +1,6 @@
 package mappings;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
@@ -11,19 +9,18 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import static helpers.BaseScreen.driver;
+
+
 
 public class mapper {
     /*
        Used to map Apps paths
     */
     public static String key_apps(String apps){
-        String use_key = null;
+        String use_key;
         if (Files.exists(Paths.get(file_path("/apk/"+apps).getAbsolutePath()))){
             use_key = file_path("/apk/"+apps).getAbsolutePath();
         }
@@ -33,38 +30,11 @@ public class mapper {
         return use_key;
     }
     /*
-        Used to map Element paths
-     */
-    public static String key_element(String element){
-        String use_selector = null;
-        if (element == null || element.isEmpty() == true){
-            throw new RuntimeException("element is required ..!");
-        }
-        else{
-            use_selector = "src/test/java/selector/"+element.split(":")[0]+".yml"+":"+element.split(":")[1];
-        }
-
-        return use_selector;
-    }
-    /*
-        Used to map the path of Test Data
-     */
-    public static String key_data(String data){
-        System.out.println("iniii =>>>>>>>>>>>>>>>>>"+data);
-        String use_data = null;
-        if (data == null || data.isEmpty() == true){
-            throw new RuntimeException("Data is required ..!");
-        }
-        use_data = "src/test/java/resources/"+data.split(":")[0]+".yml"+":"+data.split(":")[1];
-        return use_data;
-    }
-    /*
         Used to map Path File path
      */
     public static File file_path(String path){
         File base_path = new File(System.getProperty("user.dir"));
-        File use_path = new File(base_path, path);
-        return use_path;
+        return new File(base_path, path);
     }
     /*
         Used to parse the Locator on Element
@@ -110,5 +80,28 @@ public class mapper {
         }
 
         return config;
+    }
+
+    public static String key_element(String element){
+        String path_element = null;
+        if (element == null || element.isEmpty()){
+            throw new RuntimeException("Element is required ..!");
+        }
+        else{
+            path_element = "src/test/java/selector/"+element.split(":")[0]+".yml"+":"+element.split(":")[1];
+            return LoadYaml(path_element.split("\\:")[0],path_element.split("\\:")[1]);
+        }
+
+
+    }
+    public static String key_data(String data){
+        String path_data = null;
+        if (data == null || data.isEmpty()){
+            throw new RuntimeException("Data is required ..!");
+        }
+        else{
+            path_data = "src/test/java/resources/"+data.split(":")[0]+".yml"+":"+data.split(":")[1];
+            return LoadYaml(path_data.split("\\:")[0],path_data.split("\\:")[1]);
+        }
     }
 }

@@ -8,6 +8,7 @@ public class base_get {
      */
     public static String get_text(String locator){
         String text;
+        System.out.println("ini locatorrr: "+locator);
         try {
             text = base_find(locator).getText();
             if (text==null || text.isEmpty() == true){

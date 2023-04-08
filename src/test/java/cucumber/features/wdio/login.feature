@@ -4,6 +4,7 @@ Feature: Login
   Scenario: User logs in with a valid account
     And User click "navbar:navLogin"
     And User click "signup:signupContain"
+    Then Element "signup:loginSignupTitle" will be displayed
     And Fill in "signup:emailField" with "user_data:email"
     And Fill in "signup:passwordField" with "user_data:password"
     And Fill in "signup:repeatField" with "user_data:password"
