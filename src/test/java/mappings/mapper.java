@@ -43,17 +43,20 @@ public class mapper {
         Used to parse the Locator on Element
      */
     public static MobileElement locatorParser(String locator){
-        String selector = locator.split("=> ")[1];
-        MobileElement loc = null;
+        String el = locator.split("=> ")[1];
+        MobileElement selector = null;
 
-        if (locator.split(" =>")[0].contains("By.accessibilityId")) {
-            System.out.println("masuk if kah ?");
-            loc = driver.findElementByAccessibilityId(selector);
+        switch (locator.split(" =>")[0]) {
+            case "By.accessibilityId":
+                selector = driver.findElementByAccessibilityId(el);
+                break;
+            case "By.xpath":
+                selector = driver.findElementByXPath(el);
+                break;
+            default:
+                throw new Error("Element not recognized!");
         }
-        else if (locator.split(" =>")[0].contains("By.xpath")) {
-            loc = driver.findElementByXPath(selector);
-        }
-        return loc;
+        return selector;
     }
     /*
         Used to read and parse YAML files.
