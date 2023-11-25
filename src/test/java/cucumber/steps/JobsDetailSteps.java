@@ -42,7 +42,7 @@ public class JobsDetailSteps {
     /*
         Used to verify the element is displayed
      */
-    @Then("^Element \"(.*)\" will be (displayed|not displayed)$")
+    @Then("^Element \"(.*)\" (will be displayed|not displayed)$")
     public void verifyElementWillBeDisplayed(String element, String condition){
         try {
             element_displayed(key_element(element),condition);

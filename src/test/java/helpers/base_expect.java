@@ -15,7 +15,7 @@ public class base_expect {
     public static String element_displayed(String locator, String condition){
         Boolean elDisplayed = base_find(locator).isDisplayed();
         switch (condition){
-            case "displayed":
+            case "will be displayed":
                 if (elDisplayed.equals(true)){
                     System.out.println(ANSI_YELLOW+"Element '"+locator+"' is displayed"+ANSI_RESET);
                     Allure.addAttachment("Verify","Your element '"+locator+"' is displayed");
