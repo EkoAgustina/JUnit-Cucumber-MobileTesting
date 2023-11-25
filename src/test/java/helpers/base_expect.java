@@ -11,10 +11,7 @@ import static helpers.BaseScreen.*;
 import static helpers.base_get.get_text;
 
 public class base_expect {
-    /*
-        Used to verify if an element is displayed
-     */
-    public static String element_displayed(String locator, String condition){
+    public static Boolean displayed (String locator) {
         Boolean elDisplayed;
         try {
             base_find(locator).isDisplayed();
@@ -22,7 +19,13 @@ public class base_expect {
         } catch (NoSuchElementException e) {
             elDisplayed = false;
         }
-        System.out.println("cekk eldisplayed: "+elDisplayed);
+        return elDisplayed;
+    }
+    /*
+        Used to verify if an element is displayed
+     */
+    public static Boolean element_displayed(String locator, String condition){
+        Boolean elDisplayed = displayed(locator);
         switch (condition){
             case "will be displayed":
                 if (elDisplayed.equals(true)){
@@ -46,7 +49,7 @@ public class base_expect {
                 throw new RuntimeException(ANSI_RED+"Unrecognized condition"+ANSI_RESET);
 
         }
-        return null ;
+        return elDisplayed ;
 
     }
     /*
