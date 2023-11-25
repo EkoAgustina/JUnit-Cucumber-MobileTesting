@@ -5,6 +5,8 @@ import io.qameta.allure.Allure;
 
 import java.util.regex.Pattern;
 
+import org.openqa.selenium.NoSuchElementException;
+
 import static helpers.BaseScreen.*;
 import static helpers.base_get.get_text;
 
@@ -13,7 +15,14 @@ public class base_expect {
         Used to verify if an element is displayed
      */
     public static String element_displayed(String locator, String condition){
-        Boolean elDisplayed = base_find(locator).isDisplayed();
+        Boolean elDisplayed;
+        try {
+            base_find(locator).isDisplayed();
+            elDisplayed = true;
+        } catch (NoSuchElementException e) {
+            elDisplayed = false;
+        }
+        System.out.println("cekk eldisplayed: "+elDisplayed);
         switch (condition){
             case "will be displayed":
                 if (elDisplayed.equals(true)){
