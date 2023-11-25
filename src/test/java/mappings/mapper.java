@@ -8,15 +8,10 @@ import static helpers.BaseScreen.driver;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.Map;
-
-
-
 
 public class mapper {
     /*
@@ -62,52 +57,54 @@ public class mapper {
         Used to read and parse YAML files.
         So that it can be used to put Locator, Element, Test Data and others
      */
-    public static String LoadYaml(String selector, String element) {
-        Map conf = new HashMap();
+    public static Object LoadYaml(String selector, String element) {
+        Map<String, Object> data;
         Yaml yaml = new Yaml();
-        String config   = conf.toString();
 
         try {
-            InputStream stream = new FileInputStream(selector);
-            conf = (Map) yaml.load(stream);
-
-            config = (String) conf.get(element);
-
-            if (conf == null || conf.isEmpty() == true) {
-                throw new RuntimeException("Failed to read config file");
-            }
-
-        } catch (FileNotFoundException e) {
-            System.out.println("No such file " + selector);
-            throw new RuntimeException("No config file");
-        } catch (Exception e1) {
-            e1.printStackTrace();
-            throw new RuntimeException("Failed to read config file");
+            InputStream inputStream = new FileInputStream(selector);
+            data = yaml.load(inputStream);
+            
+        }
+        catch (Exception err) {
+            throw new Error(err.getMessage());
         }
 
-        return config;
+        return data.get(element);
     }
 
     public static String key_element(String element){
+        String platformType = System.getenv("platform");
         String path_element = null;
+        String selector = null;
+
         if (element == null || element.isEmpty()){
             throw new RuntimeException("Element is required ..!");
         }
         else{
             path_element = "src/test/java/resources/selector/"+element.split(":")[0]+".yml"+":"+element.split(":")[1];
-            return LoadYaml(path_element.split("\\:")[0],path_element.split("\\:")[1]);
+            Map<String, Object> parseSelector = (Map<String, Object>) LoadYaml(path_element.split("\\:")[0],path_element.split("\\:")[1]);
+            if (platformType.contains("ios")) {
+                selector = parseSelector.get("ios").toString();
+            }
+            else if (platformType.contains("android")) {
+                selector = parseSelector.get("android").toString();
+            }
+            return selector;
         }
-
-
     }
     public static String key_data(String data){
         String path_data = null;
+        String test_data = null;
         if (data == null || data.isEmpty()){
             throw new RuntimeException("Data is required ..!");
         }
         else{
             path_data = "src/test/java/resources/test_data/"+data.split(":")[0]+".yml"+":"+data.split(":")[1];
-            return LoadYaml(path_data.split("\\:")[0],path_data.split("\\:")[1]);
+            test_data = LoadYaml(path_data.split("\\:")[0],path_data.split("\\:")[1]).toString();
+            System.out.println("check test data: "+ test_data);
+            return test_data;
         }
     }
 }
+
