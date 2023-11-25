@@ -1,7 +1,10 @@
 package mappings;
 
-import org.openqa.selenium.By;
 import org.yaml.snakeyaml.Yaml;
+
+import io.appium.java_client.MobileElement;
+
+import static helpers.BaseScreen.driver;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -39,16 +42,16 @@ public class mapper {
     /*
         Used to parse the Locator on Element
      */
-    public static By locatorParser(String locator){
-        By loc = null;
-        if (locator.contains("By.id")) {
-            loc = By.id(locator.substring(locator.indexOf("\"") + 1, locator.length() - 2));
+    public static MobileElement locatorParser(String locator){
+        String selector = locator.split("=> ")[1];
+        MobileElement loc = null;
+
+        if (locator.split(" =>")[0].contains("By.accessibilityId")) {
+            System.out.println("masuk if kah ?");
+            loc = driver.findElementByAccessibilityId(selector);
         }
-        else if (locator.contains("By.name")){
-            loc = By.name(locator.substring(locator.indexOf("\"") + 1,locator.length() - 2));
-        }
-        if (locator.contains("By.xpath")) {
-            loc = By.xpath(locator.substring(locator.indexOf("\"") + 1, locator.length() - 2));
+        else if (locator.split(" =>")[0].contains("By.xpath")) {
+            loc = driver.findElementByXPath(selector);
         }
         return loc;
     }
@@ -88,7 +91,7 @@ public class mapper {
             throw new RuntimeException("Element is required ..!");
         }
         else{
-            path_element = "src/test/java/selector/"+element.split(":")[0]+".yml"+":"+element.split(":")[1];
+            path_element = "src/test/java/resources/selector/"+element.split(":")[0]+".yml"+":"+element.split(":")[1];
             return LoadYaml(path_element.split("\\:")[0],path_element.split("\\:")[1]);
         }
 
@@ -100,7 +103,7 @@ public class mapper {
             throw new RuntimeException("Data is required ..!");
         }
         else{
-            path_data = "src/test/java/resources/"+data.split(":")[0]+".yml"+":"+data.split(":")[1];
+            path_data = "src/test/java/resources/test_data/"+data.split(":")[0]+".yml"+":"+data.split(":")[1];
             return LoadYaml(path_data.split("\\:")[0],path_data.split("\\:")[1]);
         }
     }

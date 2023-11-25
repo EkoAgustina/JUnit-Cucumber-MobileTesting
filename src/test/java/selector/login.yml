@@ -1,5 +1,0 @@
-usernameField: By.id("test-Username")
-passwordField: By.id("test-Password")
-loginButton: By.id("test-LOGIN")
-
-errorMessage: By.xpath("//*[@content-desc="test-Error message"]/child::android.widget.TextView[1]")

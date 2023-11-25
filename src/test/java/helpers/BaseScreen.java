@@ -39,15 +39,11 @@ public class BaseScreen {
         Used as a basic function to search for Elements
      */
     public static MobileElement base_find(String locator){
-        MobileElement appium_element;
-
         try {
-            MobileElement mobile_element = driver.findElement(locatorParser(prop.getProperty("locator", locator)));
-            appium_element = (MobileElement) wait(10).until(ExpectedConditions.visibilityOf(mobile_element));
+            return (MobileElement) wait(10).until(ExpectedConditions.visibilityOf(locatorParser(locator)));
         } catch (NoSuchElementException e){
             throw new RuntimeException("Elements  doesn't exist! and original error :"+e.getMessage());
         }
-        return appium_element;
     }
     /*
         Used as a basic function for taking screenshots
