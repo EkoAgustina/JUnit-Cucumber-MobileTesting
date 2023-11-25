@@ -1,1 +1,3 @@
-home_header: 'By.accessibilityId => test-Cart drop zone'
+home_header:
+  ios: 'By.accessibilityId => test-Cart drop zone'
+  android: 'By.accessibilityId => test-Cart drop zone'

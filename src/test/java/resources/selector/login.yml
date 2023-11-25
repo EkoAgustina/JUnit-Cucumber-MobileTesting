@@ -1,5 +1,15 @@
-usernameField: 'By.accessibilityId => test-Username'
-passwordField: 'By.accessibilityId => test-Password'
-loginButton: 'By.accessibilityId => test-LOGIN'
+usernameField:
+  ios: 'By.accessibilityId => test-Username'
+  android: 'By.accessibilityId => test-Username'
 
-errorMessage: 'By.xpath => //*[@content-desc="test-Error message"]/child::android.widget.TextView[1]'
+passwordField:
+  ios: 'By.accessibilityId => test-Password'
+  android: 'By.accessibilityId => test-Password'
+
+loginButton:
+  ios: 'By.accessibilityId => test-LOGIN'
+  android: 'By.accessibilityId => test-LOGIN'
+
+errorMessage:
+  ios: 'By.accessibilityId => test-Error message'
+  android: 'By.xpath => //*[@content-desc="test-Error message"]/child::android.widget.TextView[1]'
