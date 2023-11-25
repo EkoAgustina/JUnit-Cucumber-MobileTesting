@@ -11,6 +11,7 @@ import java.io.ByteArrayInputStream;
 import static helpers.BaseScreen.*;
 import static helpers.base_expect.*;
 import static helpers.base_fill.fill;
+import static helpers.base_swipe.*;
 import static mappings.mapper.*;
 
 public class JobsDetailSteps {
@@ -85,5 +86,14 @@ public class JobsDetailSteps {
             throw new RuntimeException(ANSI_RED+"Step failed with original error: "+ANSI_RESET+e.getMessage());
         }
 
+    }
+
+    @And("^User scrolls up until he finds element \"(.*)\"$")
+    public void cekkSwipe(String element) {
+        try {
+            swipeUp(key_element(element));
+        } catch (Exception e){
+            throw new RuntimeException(ANSI_RED+"Step failed with original error: "+ANSI_RESET+e.getMessage());
+        }
     }
 }

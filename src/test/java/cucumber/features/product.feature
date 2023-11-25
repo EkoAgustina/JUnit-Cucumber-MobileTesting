@@ -7,4 +7,5 @@ Feature: Product
     And Fill in "login:passwordField" with "user_data:password"
     And User click "login:loginButton"
     Then Element "home:home_header" will be displayed
+    And User scrolls up until he finds element "products:productList_onesie"
     Then User take screenshot with file name "validAccount"
