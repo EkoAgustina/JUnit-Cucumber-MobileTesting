@@ -3,7 +3,7 @@ platform=${1}
 appiumPort='4725'
 
 # Android setup
-apps='wdio.apk'
+apps='swaglabs.apk'
 deviceName='Pixel4_12'
 
 # iOS setup
