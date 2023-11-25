@@ -15,7 +15,7 @@ import static helpers.BaseScreen.*;
 
 public class driverHooks {
     private static String appiumBaseUrl = "http://127.0.0.1:";
-    private static String appiumPort    = "4723";
+    private static String appiumPort    = System.getenv("appiumPort");
     private static URL appiumServerURl;
 
     /*
@@ -23,7 +23,7 @@ public class driverHooks {
      */
     @Before
     public static void openParentApps () throws Exception {
-        appiumServerURl = new URL(appiumBaseUrl+appiumPort+"/wd/hub");
+        appiumServerURl = new URL(appiumBaseUrl+appiumPort);
         try {
             driver = new AppiumDriver(appiumServerURl,initDevice());
             System.out.println("Apps started...");
