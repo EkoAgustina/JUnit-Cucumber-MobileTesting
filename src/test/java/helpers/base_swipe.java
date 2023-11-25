@@ -1,6 +1,7 @@
 package helpers;
 
 import static helpers.BaseScreen.*;
+import static helpers.base_expect.*;
 
 
 import org.openqa.selenium.Dimension;
@@ -16,13 +17,13 @@ public class base_swipe {
         int coordinateY = (int) (windowSize.height * 0.5);
         int endCoordinate = (int) (windowSize.height * 0.25);
 
-        // try {
-        //     while (!elDisplayed(locator)) {
-        //         touchAction.longPress(new PointOption().withCoordinates(coordinateX+50, coordinateY+50)).moveTo(new PointOption().withCoordinates(coordinateX+50, endCoordinate)).release().perform();
-        //     }
+        try {
+            while (!displayed(locator)) {
+                touchAction.longPress(new PointOption().withCoordinates(coordinateX+50, coordinateY+50)).moveTo(new PointOption().withCoordinates(coordinateX+50, endCoordinate)).release().perform();
+            }
             
-        // } catch (Exception err) {
-        //     throw err;
-        // }
+        } catch (Exception err) {
+            throw err;
+        }
     }
 }
