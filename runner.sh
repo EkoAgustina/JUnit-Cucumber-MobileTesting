@@ -7,9 +7,9 @@ apps='wdio.apk'
 deviceName='Pixel4_12'
 
 # iOS setup
-apps='swaglabs.app'
-deviceName='iPhone_15'
-iosUdid='EC865F6C-9547-4290-9942-B2A83F91B81C'
+# apps='swaglabs.app'
+# deviceName='iPhone_15'
+# iosUdid='EC865F6C-9547-4290-9942-B2A83F91B81C'
 
 cucumberTags='@validAccount'
 
