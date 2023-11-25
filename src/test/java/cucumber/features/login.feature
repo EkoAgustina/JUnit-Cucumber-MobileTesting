@@ -15,4 +15,5 @@ Feature: Login
     And Fill in "login:passwordField" with "user_data:invalid_password"
     And User click "login:loginButton"
     Then Element "login:errorMessage" is equal with data "login_testData:errorMessage"
+    Then Element "home:home_header" not displayed
     Then User take screenshot with file name "validAccount"
