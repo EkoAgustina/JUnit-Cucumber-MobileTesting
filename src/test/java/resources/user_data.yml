@@ -1,2 +1,5 @@
-email: "test@test.com"
-password: "P@ssw0rd"
+email: "standard_user"
+password: "secret_sauce"
+
+invalid_email: "dummy"
+invalid_password: "P@ssw0rd123"

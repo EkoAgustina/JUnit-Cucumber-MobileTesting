@@ -1,7 +1,5 @@
-loginContain: By.xpath("//android.view.ViewGroup[@content-desc="button-login-container"]/android.view.ViewGroup/android.widget.TextView")
-usernameField: By.xpath("//android.widget.EditText[@content-desc="input-email"]")
-passwordField: By.xpath("//android.widget.EditText[@content-desc="input-password"]")
+usernameField: By.id("android:id/message")
+passwordField: By.id("android:id/test-Password")
+loginButton: By.id("android:id/test-LOGIN")
 
-LoginBotton: By.xpath("//android.view.ViewGroup[@content-desc="button-LOGIN"]/android.view.ViewGroup")
-
-succesMessage: By.id("android:id/message")
+errorMessage: By.xpath("//*[@content-desc="test-Error message"]/child::android.widget.TextView[1]")
