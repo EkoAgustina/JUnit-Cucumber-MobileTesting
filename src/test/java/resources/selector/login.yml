@@ -1,0 +1,5 @@
+usernameField: 'By.accessibilityId => test-Username'
+passwordField: 'By.accessibilityId => test-Password'
+loginButton: 'By.accessibilityId => test-LOGIN'
+
+errorMessage: 'By.xpath => //*[@content-desc="test-Error message"]/child::android.widget.TextView[1]'
