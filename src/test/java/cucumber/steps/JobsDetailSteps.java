@@ -96,4 +96,13 @@ public class JobsDetailSteps {
             throw new RuntimeException(ANSI_RED+"Step failed with original error: "+ANSI_RESET+e.getMessage());
         }
     }
+
+     @And("^User click based on coordinate \"(.*)\"$")
+    public void clickCoordinate(String test_data) {
+        try {
+            base_click.cickCoordinate(test_data);
+        } catch (Exception e){
+            throw new RuntimeException(ANSI_RED+"Step failed with original error: "+ANSI_RESET+e.getMessage());
+        }
+    }
 }

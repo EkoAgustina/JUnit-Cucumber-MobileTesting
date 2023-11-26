@@ -106,5 +106,25 @@ public class mapper {
             return test_data;
         }
     }
+
+    public static Map<String, Object> keyData_coordinate(String data) {
+        String platformType = System.getenv("platform");
+        String path_data = null;
+        Map<String, Object> test_data = null;
+        if ( data == null || data.isEmpty()) {
+            throw new Error ("Data is required ..!");
+        }
+        else {
+            path_data = "src/test/java/resources/test_data/"+data.split(":")[0]+".yml"+":"+data.split(":")[1];
+            Map<String, Object> parse_testData = (Map<String, Object>) LoadYaml(path_data.split("\\:")[0],path_data.split("\\:")[1]);
+            if (platformType.contains("ios")) {
+                 test_data = (Map<String, Object>) parse_testData.get("ios");
+            }
+            else if (platformType.contains("android")) {
+                 test_data = (Map<String, Object>) parse_testData.get("android");
+            }
+        }
+        return test_data;
+    }
 }
 
