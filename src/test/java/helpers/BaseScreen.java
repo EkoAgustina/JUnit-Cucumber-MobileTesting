@@ -13,6 +13,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Date;
 import org.openqa.selenium.NoSuchElementException;
 import java.util.Properties;
@@ -34,13 +35,43 @@ public class BaseScreen {
     public static WebDriverWait wait (int period){
         return new WebDriverWait(driver,period);
     }
+
+    public static Duration sleep (int duration) {
+        try {
+             Thread.sleep(duration * 1000);
+        }
+        catch (InterruptedException err) {
+            err.getMessage();
+        }
+        return null;
+    }
+
+    public static Boolean elDisplayed (String locator) {
+        Boolean el;
+        try {
+            locatorParser(locator).isDisplayed();
+            el = true;
+        } catch (NoSuchElementException err) {
+            el = false;
+        }
+        return el;
+    }
     /*
         Used as a basic function to search for Elements
      */
     public static MobileElement base_find(String locator){
+        int attempt = 8;
+        if(elDisplayed(locator) == false) {
+            for(int i=0; i<=attempt; i++) {
+                if (i == attempt && elDisplayed(locator) == false) {
+                    System.out.println("WARN! Attempt exhausted, Element not exist!");
+                    sleep(3);
+                }
+            }
+        }
         try {
             return locatorParser(locator);
-        } catch (NoSuchElementException e){
+        } catch (ExceptionInInitializerError e){
             throw new RuntimeException(e.getMessage());
         }
     }
