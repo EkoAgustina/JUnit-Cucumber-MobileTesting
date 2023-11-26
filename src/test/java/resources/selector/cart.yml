@@ -1,0 +1,11 @@
+cartIcon:
+  ios: 'By.accessibilityId => test-Cart'
+  android: ''
+
+cart_header:
+  ios: 'By.xpath => //XCUIElementTypeStaticText[@name="YOUR CART"]'
+  android: 'By.xpath => //android.widget.TextView[@text="YOUR CART"]'
+
+cart_listOne:
+  ios: 'By.xpath => //XCUIElementTypeStaticText[@name="Sauce Labs Onesie"]'
+  android: 'By.xpath => //android.widget.TextView[@text="Sauce Labs Onesie"]'
