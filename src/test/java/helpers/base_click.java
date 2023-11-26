@@ -30,7 +30,7 @@ public class base_click {
         int coordinate_y = (int) keyData_coordinate(test_data).get("y");
         
         try {
-            touchAction.tap(new PointOption().withCoordinates(coordinate_x,coordinate_y));
+            touchAction.tap(new PointOption().withCoordinates(coordinate_x,coordinate_y)).perform();
         } catch (Exception e) {
            throw new RuntimeErrorException(null, "Failed to click coordinate "+coordinate_x+" "+coordinate_y+" '"+e.getMessage()+"'");
         }
