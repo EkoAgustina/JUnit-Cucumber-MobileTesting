@@ -40,7 +40,7 @@ public class BaseScreen {
      */
     public static MobileElement base_find(String locator){
         try {
-            return (MobileElement) wait(10).until(ExpectedConditions.visibilityOf(locatorParser(locator)));
+            return locatorParser(locator);
         } catch (NoSuchElementException e){
             throw new RuntimeException("Elements  doesn't exist! and original error :"+e.getMessage());
         }
