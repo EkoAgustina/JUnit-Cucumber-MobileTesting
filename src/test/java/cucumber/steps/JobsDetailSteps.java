@@ -89,7 +89,7 @@ public class JobsDetailSteps {
     }
 
     @And("^User scrolls up until he finds element \"(.*)\"$")
-    public void cekkSwipe(String element) {
+    public void userSwipeUp(String element) {
         try {
             swipeUp(key_element(element));
         } catch (Exception e){
