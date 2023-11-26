@@ -5,7 +5,6 @@ import io.appium.java_client.MobileElement;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
@@ -15,7 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.NoSuchElementException;
+import org.openqa.selenium.NoSuchElementException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -42,7 +41,7 @@ public class BaseScreen {
         try {
             return locatorParser(locator);
         } catch (NoSuchElementException e){
-            throw new RuntimeException("Elements  doesn't exist! and original error :"+e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
     }
     /*
