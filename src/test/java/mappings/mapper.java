@@ -1,10 +1,9 @@
 package mappings;
 
+import org.openqa.selenium.By;
 import org.yaml.snakeyaml.Yaml;
 
-import io.appium.java_client.MobileElement;
-
-import static helpers.BaseScreen.driver;
+import io.appium.java_client.MobileBy;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -37,16 +36,16 @@ public class mapper {
     /*
         Used to parse the Locator on Element
      */
-    public static MobileElement locatorParser(String locator){
+    public static By locatorParser(String locator){
         String el = locator.split("=> ")[1];
-        MobileElement selector = null;
+        By selector = null;
 
         switch (locator.split(" =>")[0]) {
             case "By.accessibilityId":
-                selector = driver.findElementByAccessibilityId(el);
+                selector =  MobileBy.AccessibilityId(el);
                 break;
             case "By.xpath":
-                selector = driver.findElementByXPath(el);
+                selector = MobileBy.xpath(el);
                 break;
             default:
                 throw new Error("Element not recognized!");

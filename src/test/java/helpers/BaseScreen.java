@@ -5,6 +5,7 @@ import io.appium.java_client.MobileElement;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
@@ -15,7 +16,6 @@ import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
-import org.openqa.selenium.NoSuchElementException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -46,13 +46,14 @@ public class BaseScreen {
         return null;
     }
 
-    public static Boolean elDisplayed (String locator) {
+    public static Boolean waitForExist (String locator) {
         Boolean el;
         try {
-            locatorParser(locator).isDisplayed();
+            wait(10).until(ExpectedConditions.visibilityOfElementLocated(locatorParser(locator)));
             el = true;
-        } catch (NoSuchElementException err) {
+        } catch (Exception err) {
             el = false;
+            sleep(3);
         }
         return el;
     }
@@ -60,19 +61,12 @@ public class BaseScreen {
         Used as a basic function to search for Elements
      */
     public static MobileElement base_find(String locator){
-        int attempt = 8;
-        if(elDisplayed(locator) == false) {
-            for(int i=0; i<=attempt; i++) {
-                if (i == attempt && elDisplayed(locator) == false) {
-                    System.out.println("WARN! Attempt exhausted, Element not exist!");
-                    sleep(3);
-                }
-            }
-        }
+        
         try {
-            return locatorParser(locator);
+            waitForExist(locator);
+            return driver.findElement(locatorParser(locator));
         } catch (ExceptionInInitializerError e){
-            throw new RuntimeException(e.getMessage());
+            throw new RuntimeException(e.getMessage());    
         }
     }
     /*

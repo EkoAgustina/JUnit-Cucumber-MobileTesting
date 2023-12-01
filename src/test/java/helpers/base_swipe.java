@@ -18,7 +18,7 @@ public class base_swipe {
         int endCoordinate = (int) (windowSize.height * 0.25);
 
         try {
-            while (!displayed(locator)) {
+            while (!waitForExist(locator)) {
                 touchAction.longPress(new PointOption().withCoordinates(coordinateX+50, coordinateY+50)).moveTo(new PointOption().withCoordinates(coordinateX+50, endCoordinate)).release().perform();
             }
             
