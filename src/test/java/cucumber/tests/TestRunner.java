@@ -4,6 +4,7 @@ import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 
+
 import static io.cucumber.junit.CucumberOptions.SnippetType.CAMELCASE;
 
 @RunWith(Cucumber.class)
@@ -11,7 +12,7 @@ import static io.cucumber.junit.CucumberOptions.SnippetType.CAMELCASE;
         features ="src/test/java/cucumber/features",
         glue={"cucumber.steps","hooks"},
         tags = "",
-        plugin = {"json:target/cucumber.json","pretty","html:target/cucumber-reports","io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"},
+        plugin = {"json:target/cucumber.json","pretty","html:target/cucumber-reports","io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm","hooks.ITestStepStarted"},
         monochrome = true,
         publish = true,
         snippets = CAMELCASE

@@ -16,6 +16,7 @@ import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -100,5 +101,38 @@ public class BaseScreen {
         Date date = new Date();
         SimpleDateFormat DateFor = new SimpleDateFormat("dd/MM/yyyy");
         return DateFor.format(date);
+    }
+
+    private static String padString(String str, int len) {
+        StringBuilder sb = new StringBuilder(str);
+        return sb.append(fill(' ', len - str.length())).toString();
+    }
+    private static String fill(char ch, int len) {
+        StringBuilder sb = new StringBuilder(len);
+        for (int i = 0; i < len; i++) {
+            sb.append(ch);
+        }
+        return sb.toString();
+    }
+
+    public static void customSpec(List<String> scenario,List<String> testStep, List<String> getSourceTagNames ){
+        Properties properties = System.getProperties();
+        String prop = (String) "[" +System.getenv("deviceName") + " - " + System.getenv("apps") + " - " + properties.get("os.name") + "]";
+        int max = prop.length() + testStep.stream().map(String::length).max(Integer::compareTo).get();
+        int maxBoxWidth = (int) (max * 1.1);
+        for(String scenarioGetSourceTagNames:getSourceTagNames) {
+            String propTagNames = prop + " " + scenarioGetSourceTagNames;
+            String line = "+" + fill('-', maxBoxWidth + 2) + "+";
+            System.out.println(line);
+            System.out.printf("| %s |%n", padString(propTagNames, maxBoxWidth));
+            for(String listScenario:scenario){
+                String propScenario = prop + " " + listScenario;
+                System.out.printf("| %s |%n", padString(propScenario, maxBoxWidth));
+                for (String str : testStep) {
+                    System.out.printf("| %s |%n", padString(prop + " ".repeat((listScenario.length() / 10)) + str, maxBoxWidth));
+                }
+            System.out.println(line);
+        }
+        }
     }
 }
